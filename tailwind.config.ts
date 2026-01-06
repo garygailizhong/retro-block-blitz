@@ -57,6 +57,18 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        tetris: {
+          i: "hsl(var(--tetris-i))",
+          o: "hsl(var(--tetris-o))",
+          t: "hsl(var(--tetris-t))",
+          s: "hsl(var(--tetris-s))",
+          z: "hsl(var(--tetris-z))",
+          j: "hsl(var(--tetris-j))",
+          l: "hsl(var(--tetris-l))",
+          ghost: "hsl(var(--tetris-ghost))",
+          board: "hsl(var(--tetris-board))",
+          grid: "hsl(var(--tetris-grid))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
