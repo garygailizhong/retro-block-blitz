@@ -22,17 +22,17 @@ const NextBlockPreview = ({ pieceType, pieces }: NextBlockPreviewProps) => {
   const { shape, color } = piece;
 
   return (
-    <div className="flex flex-col items-center gap-2">
-      <span className="text-muted-foreground text-xs uppercase tracking-wider">下一个</span>
-      <div className="bg-card p-3 rounded-lg shadow-md border border-border">
-        <div className="flex flex-col gap-[2px]">
+    <div className="flex items-center gap-2">
+      <span className="text-muted-foreground text-xs">下一个</span>
+      <div className="bg-card p-1.5 rounded-md shadow-sm border border-border">
+        <div className="flex flex-col gap-[1px]">
           {shape.map((row, rowIndex) => (
-            <div key={rowIndex} className="flex gap-[2px]">
+            <div key={rowIndex} className="flex gap-[1px]">
               {row.map((cell, colIndex) => (
                 <div
                   key={colIndex}
                   className={cn(
-                    'w-5 h-5 rounded-sm',
+                    'w-3 h-3 rounded-[1px]',
                     cell ? cn(CELL_COLORS[color], 'shadow-inner') : 'bg-transparent'
                   )}
                 />
