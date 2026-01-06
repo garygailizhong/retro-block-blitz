@@ -24,36 +24,36 @@ const Index = () => {
   const isControlDisabled = !gameState.isPlaying || gameState.isPaused || gameState.isGameOver;
 
   return (
-    <div className="min-h-screen bg-background flex flex-col items-center justify-center py-4 px-2 select-none">
+    <div className="h-[100dvh] bg-background flex flex-col items-center justify-between py-2 px-2 select-none overflow-hidden">
       {/* Header */}
-      <header className="w-full max-w-[360px] mb-4">
-        <div className="flex items-center justify-between">
-          <h1 className="text-xl font-bold text-foreground">俄罗斯方块</h1>
+      <header className="w-full max-w-[360px] flex items-center justify-between">
+        <h1 className="text-lg font-bold text-foreground">俄罗斯方块</h1>
+        <div className="flex items-center gap-3">
+          <NextBlockPreview pieceType={gameState.nextPiece} pieces={PIECES} />
           {gameState.isPlaying && !gameState.isGameOver && (
             <Button
               variant="ghost"
               size="icon"
               onClick={togglePause}
-              className="h-10 w-10"
+              className="h-9 w-9"
             >
-              {gameState.isPaused ? <Play className="h-5 w-5" /> : <Pause className="h-5 w-5" />}
+              {gameState.isPaused ? <Play className="h-4 w-4" /> : <Pause className="h-4 w-4" />}
             </Button>
           )}
         </div>
       </header>
 
-      {/* Score and Preview */}
-      <div className="w-full max-w-[360px] flex items-start justify-between mb-4 px-1">
+      {/* Score */}
+      <div className="w-full max-w-[360px]">
         <ScoreDisplay
           score={gameState.score}
           level={gameState.level}
           lines={gameState.lines}
         />
-        <NextBlockPreview pieceType={gameState.nextPiece} pieces={PIECES} />
       </div>
 
       {/* Game Board */}
-      <div className="relative mb-6">
+      <div className="relative flex-1 flex items-center justify-center min-h-0 py-1">
         <GameBoard gameState={gameState} ghostY={ghostY} />
         <PauseOverlay
           isPaused={gameState.isPaused}
@@ -66,11 +66,11 @@ const Index = () => {
         
         {/* Start screen */}
         {!gameState.isPlaying && !gameState.isGameOver && (
-          <div className="absolute inset-0 bg-background/80 backdrop-blur-sm flex flex-col items-center justify-center gap-4 rounded-xl">
-            <h2 className="text-2xl font-bold text-foreground">俄罗斯方块</h2>
+          <div className="absolute inset-0 bg-background/80 backdrop-blur-sm flex flex-col items-center justify-center gap-3 rounded-xl">
+            <h2 className="text-xl font-bold text-foreground">俄罗斯方块</h2>
             <p className="text-muted-foreground text-sm">经典益智游戏</p>
-            <Button onClick={startGame} size="lg" className="gap-2 shadow-lg">
-              <Play className="h-5 w-5" />
+            <Button onClick={startGame} size="default" className="gap-2 shadow-lg">
+              <Play className="h-4 w-4" />
               开始游戏
             </Button>
           </div>
@@ -78,18 +78,15 @@ const Index = () => {
       </div>
 
       {/* Controls */}
-      <ControlPanel
-        onMoveLeft={moveLeft}
-        onMoveRight={moveRight}
-        onRotate={rotate}
-        onHardDrop={hardDrop}
-        disabled={isControlDisabled}
-      />
-
-      {/* Footer hint */}
-      <p className="text-xs text-muted-foreground mt-6 text-center">
-        点击按钮控制方块移动和旋转
-      </p>
+      <div className="pb-2">
+        <ControlPanel
+          onMoveLeft={moveLeft}
+          onMoveRight={moveRight}
+          onRotate={rotate}
+          onHardDrop={hardDrop}
+          disabled={isControlDisabled}
+        />
+      </div>
     </div>
   );
 };

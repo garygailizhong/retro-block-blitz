@@ -53,17 +53,23 @@ const GameBoard = ({ gameState, ghostY }: GameBoardProps) => {
   }
 
   return (
-    <div className="relative bg-[hsl(var(--tetris-board))] rounded-xl p-1 shadow-2xl">
-      <div className="grid grid-cols-10 gap-[1px] bg-[hsl(var(--tetris-grid))]">
+    <div className="relative bg-[hsl(var(--tetris-board))] rounded-lg p-0.5 shadow-2xl">
+      <div 
+        className="grid grid-cols-10 gap-[1px] bg-[hsl(var(--tetris-grid))]"
+        style={{
+          width: 'min(70vw, 240px)',
+          height: 'calc(min(70vw, 240px) * 2)',
+        }}
+      >
         {displayBoard.map((row, rowIndex) =>
           row.map((cell, colIndex) => (
             <div
               key={`${rowIndex}-${colIndex}`}
               className={cn(
-                'aspect-square w-[calc((min(85vw,320px)-8px)/10)] transition-colors duration-75',
+                'aspect-square transition-colors duration-75',
                 cell === null && 'bg-[hsl(var(--tetris-board))]',
                 cell === 'ghost' && 'bg-[hsl(var(--tetris-ghost))] opacity-30',
-                cell && cell !== 'ghost' && cn(CELL_COLORS[cell], 'shadow-inner rounded-sm')
+                cell && cell !== 'ghost' && cn(CELL_COLORS[cell], 'shadow-inner rounded-[2px]')
               )}
             />
           ))
